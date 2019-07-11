@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/seckill.css}"/>
+</head>
+<body>
+<div class="container" style="text-align: center; margin-top: 13%; width: 70%">
+    <div class="row col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">登录界面</div>
+            <div class="panel-body">
+                <form id="loginForm" th:action="@{/api/login}" th:object="${user}" method="post">
+                    <div class="input-group">
+                        <span class="input-group-addon">username</span>
+                        <input id="username" type="text" th:field="*{username}" required class="form-control"
+                               style="padding-bottom: 10px"
+                               placeholder="用户名">
+                    </div>
+                    <div>
+                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                              style="color:red;"></span>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">password</span>
+                        <input id="password" type="password" th:field="*{password}" required class="form-control"
+                               placeholder="密码">
+                    </div>
+                    <div>
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                              style="color:red;">
+                        </span>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">验证码</span>
+                        <input id="code" type="text" required class="form-control" placeholder="验证码" name="code"
+                               style="width: 69%">
+                        <img src="/validateCode" id="imgObj" alt="验证码" class="img-responsive" onclick="changeImg()">
+                    </div>
+                    <div>
+                        <span th:text="${message}" style="color:red;"></span>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary login-btn">登录</button>
+                    <button type="reset" class="btn btn-warning">重置</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script th:src="@{/js/jquery-3.1.1.js}"></script>
+<script th:src="@{/js/jquery.validate.min.js}"></script>
+<script th:src="@{/js/additional-methods.min.js}"></script>
+<script th:src="@{/js/messages_zh.min.js}"></script>
+<script th:src="@{/js/jquery.md5.js}"></script>
+<script th:src="@{/js/seckill.js}"></script>
+</html>

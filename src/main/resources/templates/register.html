@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/seckill.css}"/>
+</head>
+<body>
+<div class="container" style="text-align: center; margin-top: 15%;">
+    <div class="row col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">注册页面</div>
+            <div class="panel-body">
+                <form id="registerForm" th:action="@{/register}" th:object="${user}" method="post">
+                    <div class="input-group">
+                        <span class="input-group-addon">username</span>
+                        <input id="username" type="text" th:field="*{username}" required class="form-control"
+                               placeholder="用户名">
+                    </div>
+                    <div><span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                               style="color: red;"></span>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">password</span>
+                        <input id="password" type="password" th:field="*{password}" class="form-control"
+                               placeholder="密码" required>
+                    </div>
+                    <div><span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                               style="color: red;"></span>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">rePassword</span>
+                        <input id="rePassword" type="password" th:field="*{rePassword}" class="form-control"
+                               placeholder="确定密码">
+                    </div>
+                    <div><span th:if="${#fields.hasErrors('rePassword')}" th:errors="*{rePassword}"
+                               style="color: red;"></span>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary register-btn">注册</button>
+                    <button type="reset" class="btn btn-warning">重置</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/jquery-3.1.1.js}"></script>
+<script th:src="@{/js/jquery.validate.min.js}"></script>
+<script th:src="@{/js/messages_zh.min.js}"></script>
+<script th:src="@{/js/additional-methods.min.js}"></script>
+<script th:src="@{/js/jquery.md5.js}"></script>
+<script th:src="@{/js/seckill.js}"></script>
+</body>
+</html>
